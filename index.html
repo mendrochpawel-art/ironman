@@ -2,8 +2,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800&family=Barlow:wght@400;500&display=swap">
 <style>
 :root{
-  --bg:#0b1517; --lake:#14b8b0; --lake-soft:rgba(20,184,176,.18);
-  --fg:#eef6f5; --muted:#8fa7a6; --line:rgba(238,246,245,.12);
+  --bg:#0a0a0b; --lake:#ff4fb0; --red:#e5191f; --lake-soft:rgba(255,79,176,.14);
+  --fg:#f7f2f4; --muted:#a39aa0; --line:rgba(247,242,244,.12);
   --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
   --body:"Barlow",system-ui,sans-serif;
   color-scheme:dark;
@@ -14,7 +14,7 @@ body{background:var(--bg);color:var(--fg);font-family:var(--body);
 body::after{content:"";position:fixed;inset:auto -20% -60% -20%;height:110%;
   background:radial-gradient(ellipse at 50% 100%,var(--lake-soft),transparent 60%);pointer-events:none}
 .wrap{position:relative;z-index:1;width:100%;max-width:880px;padding:24px 0;display:flex;flex-direction:column;gap:18px}
-.eyebrow{font-family:var(--display);font-weight:500;font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--lake)}
+.eyebrow{font-family:var(--display);font-weight:500;font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--red)}
 h1{margin:0;font-family:var(--display);font-weight:800;font-size:clamp(28px,5vw,44px);line-height:1;text-transform:uppercase}
 .clock{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(8px,2vw,20px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0}
 .unit{display:flex;flex-direction:column;gap:2px;min-width:0}
