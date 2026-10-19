@@ -1,0 +1,60 @@
+<title>Projekt Fjordyn Countdown</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800&family=Barlow:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#0a0a0b; --lake:#ff4fb0; --red:#e5191f; --lake-soft:rgba(255,79,176,.14);
+  --fg:#f7f2f4; --muted:#a39aa0; --line:rgba(247,242,244,.12);
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Barlow",system-ui,sans-serif;
+  color-scheme:dark;
+}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);
+  padding:0 16px;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+body::after{content:"";position:fixed;inset:auto -20% -60% -20%;height:110%;
+  background:radial-gradient(ellipse at 50% 100%,var(--lake-soft),transparent 60%);pointer-events:none}
+.wrap{position:relative;z-index:1;width:100%;max-width:880px;padding:24px 0;display:flex;flex-direction:column;gap:18px}
+.eyebrow{font-family:var(--display);font-weight:500;font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--red)}
+h1{margin:0;font-family:var(--display);font-weight:800;font-size:clamp(28px,5vw,44px);line-height:1;text-transform:uppercase}
+.clock{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(8px,2vw,20px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0}
+.unit{display:flex;flex-direction:column;gap:2px;min-width:0}
+.num{font-family:var(--display);font-weight:700;font-size:clamp(44px,11vw,104px);line-height:.9;font-variant-numeric:tabular-nums}
+.unit:first-child .num{color:var(--lake)}
+.lbl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:13px;color:var(--muted)}
+.meta b{color:var(--fg);font-weight:500}
+.meta .why{color:var(--lake)}
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">Deadline 31.12.2026</div>
+  <h1>Projekt Fjordyn</h1>
+  <div class="clock">
+    <div class="unit"><span class="num" id="d">0</span><span class="lbl">dni</span></div>
+    <div class="unit"><span class="num" id="h">00</span><span class="lbl">godz</span></div>
+    <div class="unit"><span class="num" id="m">00</span><span class="lbl">min</span></div>
+    <div class="unit"><span class="num" id="s">00</span><span class="lbl">sek</span></div>
+  </div>
+  <div class="meta">
+    <span>Goal: <b>Build everything from scratch.</b></span>
+    <span class="why">If not now, when?</span>
+    <span id="weeks">Tygodni: <b>0</b></span>
+  </div>
+</div>
+
+<script>
+const GOAL = Date.parse("2026-12-31T23:59:59+01:00");
+const $ = id => document.getElementById(id);
+const pad = n => String(n).padStart(2,"0");
+function tick(){
+  let diff = Math.max(0, GOAL - Date.now());
+  const d = Math.floor(diff/864e5); diff -= d*864e5;
+  const h = Math.floor(diff/36e5); diff -= h*36e5;
+  const m = Math.floor(diff/6e4); diff -= m*6e4;
+  const s = Math.floor(diff/1e3);
+  $("d").textContent = d; $("h").textContent = pad(h);
+  $("m").textContent = pad(m); $("s").textContent = pad(s);
+  $("weeks").innerHTML = "Tygodni: <b>" + Math.floor(d/7) + "</b>";
+}
+tick(); setInterval(tick, 1000);
+</script>
